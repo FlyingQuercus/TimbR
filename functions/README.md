@@ -3,7 +3,6 @@ This directory contains R functions required for running the scripts.  Look at t
 
 ## simhit
 This function creates simulated impulse excitation hits that match theory (sine waves with exponential damping).
-The function is quite slow and could be made more efficient by only calculating the non-zero amplitudes.
 
 ## findhits
 This function exampines a sound recording and makes a list of times when the hits start and end.
