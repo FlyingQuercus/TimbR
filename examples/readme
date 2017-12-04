@@ -1,1 +1,3 @@
+This example R script uses the quickpeaks function to analyse all the wav files in a directory (selected by choosing any of the wav files in the directory with the file browser).  It outputs the results to a csv file in the default R directory.  It uses some parameters of quickpeaks to target the first (up to 5) peaks taller than -5 dB.
 
+To use this example, the functions quickpeaks, findhits, expwin, specFFT and peaksQ must be loaded.
