@@ -1,7 +1,7 @@
 
 # Function to detect hit start and end times in a mono wave 
 # By Dan Ridley-Ellis
-# Last updated 25/09/2017
+# Last updated 27/11/2017
 #
 # Requires r packages "tuneR" and built for use with package "seewave"
 #
@@ -10,6 +10,7 @@
 # threshold = the amplitude % considered to be a hit
 # silence = the amplitude % below which is considered a hit can start and end
 # span = parameter for smoothing the wave envelope (width of sliding window in seconds)
+# longesthit = the max allowed hit duration
 # plot = TRUE (default) or FALSE : Whether graphs are plotted or not (if no hits are found, a graph is drawn for diagnostics)
 #
 # Returns:
@@ -27,6 +28,7 @@ findhits = function(wave = NULL,
                     threshold = 20,
                     silence = 5,
                     span = 0.0005,
+                    longesthit = NULL,
                     plot = TRUE) {
 
   # Make sure that the correct values are specified
@@ -77,6 +79,11 @@ findhits = function(wave = NULL,
   h.end = tail(h.start, n = length(h.start) - 1)
   h.end = c(h.end, max(wave.env[, 1]))
   h.duration = h.end - h.start
+  
+  if(is.null(longesthit) == FALSE) {
+    h.duration = min (h.duration,longesthit)
+    h.end = h.start + h.duration
+    }
 
   if(plot == "TRUE"){
   # plot the results
